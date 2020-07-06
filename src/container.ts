@@ -57,8 +57,17 @@ export function ContainerProvider(providers: { a; b }[], name?: string) {
 
     target.prototype.connectedCallback = function () {
       this.addEventListener("request", (event: CustomEvent) => {
-        event.stopPropagation();
-        event.detail.instance = container.get(event.detail.type);
+        let instance;
+
+        try {
+          instance = container.get(event.detail.type);
+
+          if (instance) {
+            event.stopPropagation();
+          }
+        } catch {}
+
+        event.detail.instance = instance;
       });
 
       connectedCallback();
