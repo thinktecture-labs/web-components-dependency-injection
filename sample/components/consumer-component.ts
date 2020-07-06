@@ -1,6 +1,6 @@
-import { ContainerProvider, Inject } from '../src/container';
-import { HttpLogger } from './http';
-import { ConsoleLog, Logger } from './logger';
+import { Inject } from '../../src';
+import { HttpLogger } from '../services/http';
+import { Logger } from '../services/logger';
 
 const template = document.createElement('template');
 
@@ -8,7 +8,7 @@ template.innerHTML = `
   <h1>Hallo</h1>
 `;
 
-export class ComponentA extends HTMLElement {
+export class ConsumerComponent extends HTMLElement {
   @Inject('logger')
   logger?: Logger;
 
@@ -32,4 +32,4 @@ export class ComponentA extends HTMLElement {
   }
 }
 
-customElements.define('component-a', ComponentA);
+customElements.define('di-consumer', ConsumerComponent);

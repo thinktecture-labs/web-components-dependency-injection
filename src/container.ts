@@ -3,22 +3,7 @@
 import 'reflect-metadata';
 
 const KEY_IS_INJECTABLE = Symbol('IS_INJECTABLE');
-const KEY_IS_INJECT = Symbol('IS_INJECT');
 const KEY_PARAMS = 'design:paramtypes';
-
-/*
-function PropDecorator(target: any, name: string) {
-  const constructor = target.constructor;
-  // Use of Object.defineProperty is important because it creates a non-enumerable property
-  // which prevents the property from being copied during subclassing.
-  const meta = constructor.hasOwnProperty(PROP_METADATA) ?
-    (constructor as any)[PROP_METADATA] :
-    Object.defineProperty(constructor, PROP_METADATA, {value: {}})[PROP_METADATA];
-  meta[name] = meta.hasOwnProperty(name) && meta[name] || [];
-  meta[name].unshift(decoratorInstance);
-
-  if (additionalProcessing) additionalProcessing(target, name, ...args);
-}*/
 
 interface DiRequest {
   type?: any;

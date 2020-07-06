@@ -3,21 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-
-    <script src="main.ts"></script>
-    <script src="child.ts"></script>
-    <script src="component-a.ts"></script>
   </head>
   <body>
-    <script>
-      window.document.body.addEventListener('popo', () => console.log('popo im window'));
-    </script>
-
-    <component-main>
-      <component-a></component-a>
-      <component-child>
-        <component-a></component-a>
-      </component-child>
-    </component-main>
+    <di-root>
+      <di-consumer></di-consumer>
+      <di-child>
+        <di-consumer></di-consumer>
+      </di-child>
+    </di-root>
   </body>
 </html>

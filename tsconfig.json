@@ -4,6 +4,7 @@
     "emitDecoratorMetadata": true,
     "outDir": "dist",
     "module": "CommonJS",
-    "target": "ES6"
+    "target": "ES6",
+    "sourceMap": true
   }
 }

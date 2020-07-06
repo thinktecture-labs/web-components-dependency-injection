@@ -1,11 +1,11 @@
-import { ContainerProvider } from '../src/container';
-import { ConsoleLog2 } from './logger';
+import { ContainerProvider } from '../../src';
+import { ConsoleLog2 } from '../services/logger';
 
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
 
 @ContainerProvider([{ a: 'logger', b: ConsoleLog2 }])
-export class ComponentMain extends HTMLElement {
+export class ChildComponent extends HTMLElement {
   shadow: any;
 
   constructor() {
@@ -20,4 +20,4 @@ export class ComponentMain extends HTMLElement {
   }
 }
 
-customElements.define('component-child', ComponentMain);
+customElements.define('di-child', ChildComponent);

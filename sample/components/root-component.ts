@@ -1,6 +1,6 @@
-import { ContainerProvider } from '../src/container';
-import { HttpConsoleLog } from './http';
-import { ConsoleLog } from './logger';
+import { ContainerProvider } from '../../src';
+import { HttpConsoleLog } from '../services/http';
+import { ConsoleLog } from '../services/logger';
 
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
@@ -9,7 +9,7 @@ template.innerHTML = '<slot></slot>';
   { a: 'logger', b: ConsoleLog },
   { a: 'http', b: HttpConsoleLog },
 ])
-export class ComponentMain extends HTMLElement {
+export class RootComponent extends HTMLElement {
   shadow: any;
 
   constructor() {
@@ -24,4 +24,4 @@ export class ComponentMain extends HTMLElement {
   }
 }
 
-customElements.define('component-main', ComponentMain);
+customElements.define('di-root', RootComponent);
