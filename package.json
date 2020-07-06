@@ -11,5 +11,20 @@
   "bugs": {
     "url": "https://github.com/thinktecture-labs/web-components-dependency-injection/issues"
   },
-  "homepage": "https://github.com/thinktecture-labs/web-components-dependency-injection#readme"
+  "homepage": "https://github.com/thinktecture-labs/web-components-dependency-injection#readme",
+  "devDependencies": {
+    "husky": "~3.1.0",
+    "lint-staged": "~10.2.11",
+    "prettier": "~2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": [
+      "prettier --write"
+    ]
+  }
 }
