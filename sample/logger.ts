@@ -10,6 +10,6 @@ export class ConsoleLog extends Logger {
 
 export class ConsoleLog2 extends Logger {
   log(message: string) {
-    console.log("child logger", message);
+    console.log('child logger', message);
   }
 }

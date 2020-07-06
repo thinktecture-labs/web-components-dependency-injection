@@ -1,13 +1,13 @@
-import { ContainerProvider } from "../src/container";
-import { HttpConsoleLog } from "./http";
-import { ConsoleLog } from "./logger";
+import { ContainerProvider } from '../src/container';
+import { HttpConsoleLog } from './http';
+import { ConsoleLog } from './logger';
 
-const template = document.createElement("template");
-template.innerHTML = "<slot></slot>";
+const template = document.createElement('template');
+template.innerHTML = '<slot></slot>';
 
 @ContainerProvider([
-  { a: "logger", b: ConsoleLog },
-  { a: "http", b: HttpConsoleLog },
+  { a: 'logger', b: ConsoleLog },
+  { a: 'http', b: HttpConsoleLog },
 ])
 export class ComponentMain extends HTMLElement {
   shadow: any;
@@ -15,13 +15,13 @@ export class ComponentMain extends HTMLElement {
   constructor() {
     super();
 
-    this.shadow = this.attachShadow({ mode: "closed" });
+    this.shadow = this.attachShadow({ mode: 'closed' });
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
-    console.log("Main CC");
+    console.log('Main CC');
   }
 }
 
-customElements.define("component-main", ComponentMain);
+customElements.define('component-main', ComponentMain);

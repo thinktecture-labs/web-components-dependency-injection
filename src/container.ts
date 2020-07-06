@@ -1,10 +1,10 @@
 // from: https://github.com/thinktecture-labs/dependency-injection-poc
 
-import "reflect-metadata";
+import 'reflect-metadata';
 
-const KEY_IS_INJECTABLE = Symbol("IS_INJECTABLE");
-const KEY_IS_INJECT = Symbol("IS_INJECT");
-const KEY_PARAMS = "design:paramtypes";
+const KEY_IS_INJECTABLE = Symbol('IS_INJECTABLE');
+const KEY_IS_INJECT = Symbol('IS_INJECT');
+const KEY_PARAMS = 'design:paramtypes';
 
 /*
 function PropDecorator(target: any, name: string) {
@@ -29,7 +29,7 @@ export function Inject(type: string) {
   return function (target: any, name: string) {
     Object.defineProperty(target, name, {
       get(): any {
-        const event = new CustomEvent<DiRequest>("request", {
+        const event = new CustomEvent<DiRequest>('request', {
           detail: {
             type,
           },
@@ -48,7 +48,7 @@ export function Inject(type: string) {
 }
 
 export function ContainerProvider(providers: { a; b }[], name?: string) {
-  console.log("Creating provider", name);
+  console.log('Creating provider', name);
   const container = new Container();
   providers.forEach((provider) => container.provide(provider.a, provider.b));
 
@@ -56,7 +56,7 @@ export function ContainerProvider(providers: { a; b }[], name?: string) {
     const connectedCallback = target.prototype.connectedCallback;
 
     target.prototype.connectedCallback = function () {
-      this.addEventListener("request", (event: CustomEvent) => {
+      this.addEventListener('request', (event: CustomEvent) => {
         let instance;
 
         try {

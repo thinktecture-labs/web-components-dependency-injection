@@ -4,6 +4,6 @@ export abstract class HttpLogger {
 
 export class HttpConsoleLog extends HttpLogger {
   log(message: string) {
-    console.log("http", message);
+    console.log('http', message);
   }
 }
