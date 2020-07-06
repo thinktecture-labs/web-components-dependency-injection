@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="main.ts"></script>
+    <script src="child.ts"></script>
+    <script src="component-a.ts"></script>
+  </head>
+  <body>
+    <script>
+      window.document.body.addEventListener('popo', () => console.log('popo im window'));
+    </script>
+
+    <component-main>
+      <component-a></component-a>
+      <component-child>
+        <component-a></component-a>
+      </component-child>
+    </component-main>
+
+
+  </body>
+</html>
