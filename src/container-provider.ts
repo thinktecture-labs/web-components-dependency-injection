@@ -24,7 +24,9 @@ export function ContainerProvider(providers: Provider<any>[], name?: string) {
         } catch {}
       });
 
-      connectedCallback();
+      if (connectedCallback) {
+        connectedCallback();
+      }
     };
 
     return target;
