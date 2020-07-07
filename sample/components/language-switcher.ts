@@ -1,19 +1,16 @@
 import { Inject } from '../../src';
-import { HttpLogger, Logger } from '../services';
 import { TranslateService } from '../services/translate';
 
 const template = document.createElement('template');
 template.innerHTML = `
-  <span></span>
+  <ul></ul>
 `;
 
-export class ConsumerComponent extends HTMLElement {
-  @Inject() private readonly logger: Logger;
-  @Inject() private readonly httpLogger: HttpLogger;
+export class LanguageSwitcherComponent extends HTMLElement {
   @Inject() private readonly translateService: TranslateService;
 
   private shadow: ShadowRoot;
-  private readonly span: HTMLSpanElement;
+  private readonly ul: HTMLUListElement;
   private unregister = () => {};
 
   constructor() {
@@ -22,13 +19,10 @@ export class ConsumerComponent extends HTMLElement {
     this.shadow = this.attachShadow({ mode: 'closed' });
     this.shadow.appendChild(template.content.cloneNode(true));
 
-    this.span = this.shadow.querySelector('span');
+    this.ul = this.shadow.querySelector('ul');
   }
 
   public connectedCallback(): void {
-    this.logger.log('[CONSUMER] Logging');
-    this.httpLogger.log('[CONSUMER] Http Logging');
-
     this.unregister = this.translateService.registerLanguageChange(() => {
       this.render();
     });
@@ -41,8 +35,19 @@ export class ConsumerComponent extends HTMLElement {
   }
 
   private render(): void {
-    this.span.innerText = this.translateService.get('HELLO_WORLD');
+    while (this.ul.firstChild) {
+      this.ul.removeChild(this.ul.firstChild);
+    }
+
+    this.translateService.languages().forEach(({ id, caption }) => {
+      const li = document.createElement('li');
+      li.innerHTML = caption;
+      li.addEventListener('click', () => {
+        this.translateService.setLanguage(id);
+      });
+      this.ul.appendChild(li);
+    });
   }
 }
 
-customElements.define('di-consumer', ConsumerComponent);
+customElements.define('di-language-switcher', LanguageSwitcherComponent);
