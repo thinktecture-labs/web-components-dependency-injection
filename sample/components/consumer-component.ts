@@ -9,10 +9,10 @@ template.innerHTML = `
 
 export class ConsumerComponent extends HTMLElement {
   @Inject('logger')
-  logger?: Logger;
+  logger: Logger;
 
   @Inject('http')
-  httpLogger?: HttpLogger;
+  httpLogger: HttpLogger;
 
   shadow: any;
 
@@ -25,8 +25,8 @@ export class ConsumerComponent extends HTMLElement {
 
   connectedCallback() {
     console.log('Hier drunter sollte ein CREATING COMPONENT A stehen');
-    this.logger?.log('Creating Component A');
-    this.httpLogger?.log('HTTP Creating Component A');
+    this.logger.log('Creating Component A');
+    this.httpLogger.log('HTTP Creating Component A');
     console.log('Hier drüber sollte ein CREATING COMPONENT A stehen');
   }
 }
