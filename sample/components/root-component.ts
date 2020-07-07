@@ -6,8 +6,8 @@ template.innerHTML = '<slot></slot>';
 
 @ContainerProvider(
   [
-    { a: 'logger', b: ConsoleLog },
-    { a: 'http', b: HttpConsoleLog },
+    { provide: 'logger', useClass: ConsoleLog },
+    { provide: 'http', useClass: HttpConsoleLog },
   ],
   'root',
 )

@@ -1,17 +1,15 @@
-console.log('logger logger');
-
 export abstract class Logger {
   abstract log(message: string);
 }
 
 export class ConsoleLog extends Logger {
   log(message: string) {
-    console.log(message);
+    console.log('(logger)', message);
   }
 }
 
-export class ConsoleLog2 extends Logger {
+export class ConsoleWarn extends Logger {
   log(message: string) {
-    console.log('child logger', message);
+    console.warn('(child logger)', message);
   }
 }

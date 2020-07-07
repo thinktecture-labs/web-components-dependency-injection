@@ -1,10 +1,10 @@
 import { ContainerProvider } from '../../src';
-import { ConsoleLog2 } from '../services';
+import { ConsoleWarn } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
 
-@ContainerProvider([{ a: 'logger', b: ConsoleLog2 }], 'child')
+@ContainerProvider([{ provide: 'logger', useClass: ConsoleWarn }], 'child')
 export class ChildComponent extends HTMLElement {
   shadow: any;
 
