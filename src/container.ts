@@ -10,6 +10,8 @@ interface DiRequest {
   instance?: any;
 }
 
+console.log('Hallo i bims');
+
 export function Inject(type: string) {
   return function (target: any, name: string) {
     Object.defineProperty(target, name, {

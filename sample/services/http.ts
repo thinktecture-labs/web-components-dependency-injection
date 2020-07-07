@@ -1,3 +1,5 @@
+console.log('http logger');
+
 export abstract class HttpLogger {
   abstract log(message: string);
 }

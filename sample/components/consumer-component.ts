@@ -1,6 +1,5 @@
 import { Inject } from '../../src';
-import { HttpLogger } from '../services/http';
-import { Logger } from '../services/logger';
+import { HttpLogger, Logger } from '../services';
 
 const template = document.createElement('template');
 

@@ -19,9 +19,10 @@ module.exports = {
   },
   resolve: {
     // Add ".ts" and ".tsx" as resolvable extensions.
-    extensions: [ '.ts', '.tsx', '.js' ],
+    extensions: [ '.ts', '.js' ],
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
@@ -34,11 +35,13 @@ module.exports = {
           test: /[\\/]src[\\/]/,
           name: 'web-components-dependency-injection',
           enforce: true,
+          reuseExistingChunk: true,
         },
         services: {
           test: /[\\/]sample\/services[\\/]/,
           name: 'services',
           enforce: true,
+          reuseExistingChunk: true,
         },
       },
     },

@@ -1,6 +1,5 @@
 import { ContainerProvider } from '../../src';
-import { HttpConsoleLog } from '../services/http';
-import { ConsoleLog } from '../services/logger';
+import { ConsoleLog, HttpConsoleLog } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
