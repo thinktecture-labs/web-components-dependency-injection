@@ -19,15 +19,17 @@ export class ConsumerComponent extends HTMLElement {
   constructor() {
     super();
 
+    console.log('[CONSUMER] constructor');
+
     this.shadow = this.attachShadow({ mode: 'closed' });
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
-    console.log('Hier drunter sollte ein CREATING COMPONENT A stehen');
-    this.logger.log('Creating Component A');
-    this.httpLogger.log('HTTP Creating Component A');
-    console.log('Hier drüber sollte ein CREATING COMPONENT A stehen');
+    console.log('[CONSUMER] connected');
+
+    this.logger.log('[CONSUMER] Logging');
+    this.httpLogger.log('[CONSUMER] Http Logging');
   }
 }
 

@@ -69,6 +69,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './sample/index.html',
       filename: './index.html',
+      inject: 'head',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'json',
