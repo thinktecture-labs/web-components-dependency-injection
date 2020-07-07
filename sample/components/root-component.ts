@@ -4,15 +4,12 @@ import { ConsoleLog, HttpConsoleLog, HttpLogger, Logger } from '../services';
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
 
-@ContainerProvider(
-  [
-    { provide: Logger, useClass: ConsoleLog },
-    { provide: HttpLogger, useClass: HttpConsoleLog },
-  ],
-  'root',
-)
+@ContainerProvider([
+  { provide: Logger, useClass: ConsoleLog },
+  { provide: HttpLogger, useClass: HttpConsoleLog },
+])
 export class RootComponent extends HTMLElement {
-  shadow: any;
+  private shadow: ShadowRoot;
 
   constructor() {
     super();

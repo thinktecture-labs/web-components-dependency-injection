@@ -4,9 +4,9 @@ import { ConsoleWarn, Logger } from '../services';
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';
 
-@ContainerProvider([{ provide: Logger, useClass: ConsoleWarn }], 'child')
+@ContainerProvider([{ provide: Logger, useClass: ConsoleWarn }])
 export class ChildComponent extends HTMLElement {
-  shadow: any;
+  private shadow: ShadowRoot;
 
   constructor() {
     super();

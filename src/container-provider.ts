@@ -5,9 +5,7 @@ interface Provider<T> {
   useClass?: Token<T>;
 }
 
-export function ContainerProvider(providers: Provider<any>[], name?: string) {
-  console.log('Providing Container', name);
-
+export function ContainerProvider(providers: Provider<any>[]) {
   const container = new Container();
   providers.forEach(({ provide, useClass }) => {
     container.provide(provide, useClass);

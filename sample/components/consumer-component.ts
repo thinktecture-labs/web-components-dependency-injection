@@ -2,19 +2,15 @@ import { Inject } from '../../src';
 import { HttpLogger, Logger } from '../services';
 
 const template = document.createElement('template');
-
 template.innerHTML = `
   <h1>Hallo</h1>
 `;
 
 export class ConsumerComponent extends HTMLElement {
-  @Inject(Logger)
-  logger: Logger;
+  @Inject() private readonly logger: Logger;
+  @Inject() private readonly httpLogger: HttpLogger;
 
-  @Inject(HttpLogger)
-  httpLogger: HttpLogger;
-
-  shadow: any;
+  private shadow: ShadowRoot;
 
   constructor() {
     super();
