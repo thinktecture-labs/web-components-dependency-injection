@@ -5,7 +5,7 @@ import 'reflect-metadata';
 const KEY_IS_INJECTABLE = Symbol('IS_INJECTABLE');
 const KEY_PARAMS = 'design:paramtypes';
 
-interface Token<T> extends Function {
+export interface Token<T> extends Function {
   new (...args: any[]): T;
 }
 
@@ -15,20 +15,20 @@ interface Item<T> {
 }
 
 export class Container {
-  private readonly container = new Map<string, Item<any>>();
+  private readonly container = new Map<Function, Item<any>>();
 
-  provide<T>(token: any, clazz?: any) {
-    /*const actualClass = clazz || token;
+  provide<T>(token: Token<T>, clazz?: Token<T>) {
+    const actualClass = clazz || token;
     if (actualClass.prototype.constructor.length && !this.isInjectable(actualClass)) {
       throw new Error(`${actualClass.name} is not decorated!`);
-    }*/
-    this.container.set(token, { clazz });
+    }
+    this.container.set(token, { clazz: actualClass });
   }
 
-  get<T>(token: string): T {
+  get<T>(token: Token<T>): T {
     const item = this.container.get(token);
     if (!item) {
-      throw new Error(`Nothing found for token ${token}`);
+      throw new Error(`Nothing found for token ${token.name}`);
     }
 
     const { clazz, instance } = item;

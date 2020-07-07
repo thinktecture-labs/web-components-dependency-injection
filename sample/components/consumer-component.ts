@@ -8,10 +8,10 @@ template.innerHTML = `
 `;
 
 export class ConsumerComponent extends HTMLElement {
-  @Inject('logger')
+  @Inject(Logger)
   logger: Logger;
 
-  @Inject('http')
+  @Inject(HttpLogger)
   httpLogger: HttpLogger;
 
   shadow: any;
@@ -19,15 +19,11 @@ export class ConsumerComponent extends HTMLElement {
   constructor() {
     super();
 
-    console.log('[CONSUMER] constructor');
-
     this.shadow = this.attachShadow({ mode: 'closed' });
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
-    console.log('[CONSUMER] connected');
-
     this.logger.log('[CONSUMER] Logging');
     this.httpLogger.log('[CONSUMER] Http Logging');
   }

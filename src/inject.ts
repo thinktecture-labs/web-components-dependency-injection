@@ -1,25 +1,29 @@
+import { Token } from './container';
+
 interface DiRequest {
   type?: any;
   instance?: any;
 }
 
-export function Inject(type: string) {
-  return function (target: any, name: string) {
-    Object.defineProperty(target, name, {
+function makeRequestEvent(type: Token<any>): CustomEvent<DiRequest> {
+  return new CustomEvent<DiRequest>('request', {
+    detail: { type },
+    bubbles: true,
+    composed: true,
+  });
+}
+
+export function Inject(type: Token<any>) {
+  return (target: any, name: string) => {
+    const property = {
       get(): any {
-        const event = new CustomEvent<DiRequest>('request', {
-          detail: {
-            type,
-          },
-          bubbles: true,
-          composed: true,
-        });
-
+        const event = makeRequestEvent(type);
         this.dispatchEvent(event);
-
         return event.detail.instance;
       },
-    });
+    };
+
+    Object.defineProperty(target, name, property);
 
     return target;
   };

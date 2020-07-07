@@ -1,11 +1,11 @@
-import { Container } from './container';
+import { Container, Token } from './container';
 
-interface Provider {
-  provide: string;
-  useClass: any;
+interface Provider<T> {
+  provide: Token<T>;
+  useClass?: Token<T>;
 }
 
-export function ContainerProvider(providers: Provider[], name?: string) {
+export function ContainerProvider(providers: Provider<any>[], name?: string) {
   console.log('Providing Container', name);
 
   const container = new Container();
