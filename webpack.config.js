@@ -6,7 +6,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: {
     // One entry point per web component
     'root-component': './sample/components/root-component.ts',
