@@ -15,9 +15,7 @@ template.innerHTML = `
   }
 </style>
 
-
 <slot></slot>
-
 `;
 
 @ContainerProvider([
