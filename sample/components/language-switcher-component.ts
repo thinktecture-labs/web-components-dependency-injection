@@ -1,6 +1,5 @@
 import { Inject } from '../../src';
-import { TranslateService } from '../services';
-import { Shadow } from '../services/shadow';
+import { Shadow, TranslateService } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = `

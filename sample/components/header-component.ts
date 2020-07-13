@@ -1,4 +1,4 @@
-import { Shadow } from '../services/shadow';
+import { Shadow } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = `

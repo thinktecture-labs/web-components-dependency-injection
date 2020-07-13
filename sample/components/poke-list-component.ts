@@ -1,6 +1,5 @@
 import { Inject } from '../../src';
-import { HttpClient, Logger, TranslateService } from '../services';
-import { Shadow } from '../services/shadow';
+import { HttpClient, Logger, Shadow, TranslateService } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -72,8 +71,6 @@ export class PokeListComponent extends Shadow(template) {
   @Inject() private readonly logger: Logger;
   @Inject() private readonly translateService: TranslateService;
   @Inject() private readonly httpClient: HttpClient;
-
-  private unregister = () => {};
   private pokemons?: Pokemon[];
   private table: {
     headId: HTMLTableHeaderCellElement;
@@ -113,6 +110,8 @@ export class PokeListComponent extends Shadow(template) {
   disconnectedCallback(): void {
     this.unregister();
   }
+
+  private unregister = () => {};
 
   private render(): void {
     this.table.headId.innerText = this.translateService.get('POKE_LIST_ID');

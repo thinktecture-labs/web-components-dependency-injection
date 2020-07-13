@@ -1,6 +1,5 @@
 import { ContainerProvider } from '../../src';
-import { AuthorizedConsoleLogger, AuthorizedHttpClient, HttpClient, Logger } from '../services';
-import { Shadow } from '../services/shadow';
+import { AuthorizedConsoleLogger, AuthorizedHttpClient, HttpClient, Logger, Shadow } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = '<slot></slot>';

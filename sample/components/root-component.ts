@@ -1,6 +1,5 @@
 import { ContainerProvider } from '../../src';
-import { ConsoleLogger, HttpClient, Logger, TranslateService } from '../services';
-import { Shadow } from '../services/shadow';
+import { ConsoleLogger, HttpClient, Logger, Shadow, TranslateService } from '../services';
 
 const template = document.createElement('template');
 template.innerHTML = `
