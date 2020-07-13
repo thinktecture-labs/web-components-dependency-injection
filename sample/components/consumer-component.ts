@@ -1,26 +1,23 @@
 import { Inject } from '../../src';
 import { HttpLogger, Logger } from '../services';
 import { TranslateService } from '../services/translate';
+import { ShadowComponent } from './shadow-component';
 
 const template = document.createElement('template');
 template.innerHTML = `
   <span></span>
 `;
 
-export class ConsumerComponent extends HTMLElement {
+export class ConsumerComponent extends ShadowComponent(template) {
   @Inject() private readonly logger: Logger;
   @Inject() private readonly httpLogger: HttpLogger;
   @Inject() private readonly translateService: TranslateService;
 
-  private shadow: ShadowRoot;
   private readonly span: HTMLSpanElement;
   private unregister = () => {};
 
   constructor() {
     super();
-
-    this.shadow = this.attachShadow({ mode: 'closed' });
-    this.shadow.appendChild(template.content.cloneNode(true));
 
     this.span = this.shadow.querySelector('span');
   }

@@ -12,7 +12,7 @@ module.exports = {
     'root-component': './sample/components/root-component.ts',
     'consumer-component': './sample/components/consumer-component.ts',
     'child-component': './sample/components/child-component.ts',
-    'language-switcher': './sample/components/language-switcher.ts',
+    'language-switcher': './sample/components/language-switcher-component.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
