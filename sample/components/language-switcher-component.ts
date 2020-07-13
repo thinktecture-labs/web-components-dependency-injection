@@ -1,6 +1,6 @@
 import { Inject } from '../../src';
 import { TranslateService } from '../services';
-import { ShadowComponent } from './shadow-component';
+import { Shadow } from '../services/shadow';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -28,7 +28,7 @@ template.innerHTML = `
 <ul></ul>
 `;
 
-export class LanguageSwitcherComponent extends ShadowComponent(template) {
+export class LanguageSwitcherComponent extends Shadow(template) {
   @Inject() private readonly translateService: TranslateService;
 
   private readonly ul: HTMLUListElement;

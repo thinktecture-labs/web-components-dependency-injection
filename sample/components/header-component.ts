@@ -1,4 +1,4 @@
-import { ShadowComponent } from './shadow-component';
+import { Shadow } from '../services/shadow';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -21,7 +21,7 @@ template.innerHTML = `
 <slot name="language-switcher"></slot>
 `;
 
-export class HeaderComponent extends ShadowComponent(template) {
+export class HeaderComponent extends Shadow(template) {
   constructor() {
     super();
   }

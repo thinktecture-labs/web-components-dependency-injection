@@ -1,6 +1,6 @@
 import { ContainerProvider } from '../../src';
 import { ConsoleLogger, HttpClient, Logger, TranslateService } from '../services';
-import { ShadowComponent } from './shadow-component';
+import { Shadow } from '../services/shadow';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -23,7 +23,7 @@ template.innerHTML = `
   { provide: TranslateService },
   { provide: HttpClient },
 ])
-export class RootComponent extends ShadowComponent(template) {
+export class RootComponent extends Shadow(template) {
   constructor() {
     super();
   }

@@ -1,6 +1,6 @@
 import { Inject } from '../../src';
 import { HttpClient, Logger, TranslateService } from '../services';
-import { ShadowComponent } from './shadow-component';
+import { Shadow } from '../services/shadow';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -68,7 +68,7 @@ interface Pokemon {
   url: string;
 }
 
-export class PokeListComponent extends ShadowComponent(template) {
+export class PokeListComponent extends Shadow(template) {
   @Inject() private readonly logger: Logger;
   @Inject() private readonly translateService: TranslateService;
   @Inject() private readonly httpClient: HttpClient;

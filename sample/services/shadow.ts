@@ -1,4 +1,4 @@
-export const ShadowComponent = (template: HTMLTemplateElement) => {
+export const Shadow = (template: HTMLTemplateElement) => {
   return class extends HTMLElement {
     protected shadow: ShadowRoot;
 
