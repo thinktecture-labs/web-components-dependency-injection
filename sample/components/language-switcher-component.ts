@@ -1,10 +1,31 @@
 import { Inject } from '../../src';
-import { TranslateService } from '../services/translate';
+import { TranslateService } from '../services';
 import { ShadowComponent } from './shadow-component';
 
 const template = document.createElement('template');
 template.innerHTML = `
-  <ul></ul>
+<style>
+  ul {
+    list-style-type: none;
+    display: flex;
+  }
+
+  li.active {
+    text-decoration: underline;
+  }
+
+  li:hover {
+    cursor: pointer;
+  }
+
+  li + li {
+    margin-left: calc(var(--gap) / 2);
+    border-left: 2px solid var(--background-color);
+    padding-left: calc(var(--gap) / 2);
+  }
+</style>
+
+<ul></ul>
 `;
 
 export class LanguageSwitcherComponent extends ShadowComponent(template) {
@@ -16,7 +37,7 @@ export class LanguageSwitcherComponent extends ShadowComponent(template) {
   constructor() {
     super();
 
-    this.ul = this.shadow.querySelector('ul');
+    this.ul = this.shadow.querySelector('ul')!;
   }
 
   connectedCallback(): void {
@@ -34,10 +55,16 @@ export class LanguageSwitcherComponent extends ShadowComponent(template) {
       this.ul.removeChild(this.ul.firstChild);
     }
 
-    this.translateService.languages().forEach(({ id, caption }) => {
+    this.translateService.languages().forEach(({ id, caption, active }) => {
       const li = document.createElement('li');
-      li.innerHTML = caption;
+
+      li.innerText = id;
       li.addEventListener('click', () => this.translateService.setLanguage(id));
+
+      if (active) {
+        li.classList.add('active');
+      }
+
       this.ul.appendChild(li);
     });
   }

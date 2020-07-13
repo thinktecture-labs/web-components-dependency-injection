@@ -10,9 +10,10 @@ module.exports = {
   entry: {
     // One entry point per web component
     'root-component': './sample/components/root-component.ts',
-    'consumer-component': './sample/components/consumer-component.ts',
-    'child-component': './sample/components/child-component.ts',
+    'poke-list-component': './sample/components/poke-list-component.ts',
+    'authorized-component': './sample/components/authorized-component.ts',
     'language-switcher': './sample/components/language-switcher-component.ts',
+    'header': './sample/components/header-component.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

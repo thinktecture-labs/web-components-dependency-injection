@@ -5,13 +5,17 @@ interface Translations {
 const GERMAN: Translations = {
   DE: 'Deutsch',
   EN: 'Englisch',
-  HELLO_WORLD: 'Hallo Welt!',
+  POKE_LIST_ID: 'Eindeutige Nummer',
+  POKE_LIST_NAME: 'Name des Pokémons',
+  POKE_LIST_DETAILS: '[ Weitere Details ]',
 };
 
 const ENGLISH: Translations = {
   DE: 'German',
   EN: 'English',
-  HELLO_WORLD: 'Hello World!',
+  POKE_LIST_ID: 'Unique Identifier',
+  POKE_LIST_NAME: 'Name of the pokémon',
+  POKE_LIST_DETAILS: '[ Further details ]',
 };
 
 const LANGUAGES = [
@@ -35,9 +39,9 @@ export class TranslateService {
     }
   }
 
-  languages(): { id: string; caption: string }[] {
+  languages(): { id: string; caption: string; active: boolean }[] {
     const translations = this.currentLanguage.translations;
-    return LANGUAGES.map(({ id }) => ({ id, caption: translations[id] }));
+    return LANGUAGES.map(({ id }) => ({ id, caption: translations[id], active: id === this.currentLanguage.id }));
   }
 
   registerLanguageChange(fn: () => void): () => void {

@@ -4,6 +4,7 @@
     "emitDecoratorMetadata": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    "strictNullChecks": true,
     "outDir": "dist",
     "module": "CommonJS",
     "target": "ES6",

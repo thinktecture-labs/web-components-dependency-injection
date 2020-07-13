@@ -1,6 +1,5 @@
 import { ContainerProvider } from '../../src';
-import { ConsoleLog, HttpConsoleLog, HttpLogger, Logger } from '../services';
-import { TranslateService } from '../services/translate';
+import { ConsoleLogger, HttpClient, Logger, TranslateService } from '../services';
 import { ShadowComponent } from './shadow-component';
 
 const template = document.createElement('template');
@@ -9,6 +8,7 @@ template.innerHTML = `
   :host {
     --primary-color: #ff2d21;
     --background-color: #f9f8f7;
+    --gap: 1rem;
 
     display: block;
     background-color: var(--background-color);
@@ -21,9 +21,9 @@ template.innerHTML = `
 `;
 
 @ContainerProvider([
-  { provide: Logger, useClass: ConsoleLog },
-  { provide: HttpLogger, useClass: HttpConsoleLog },
+  { provide: Logger, useClass: ConsoleLogger },
   { provide: TranslateService },
+  { provide: HttpClient },
 ])
 export class RootComponent extends ShadowComponent(template) {
   constructor() {

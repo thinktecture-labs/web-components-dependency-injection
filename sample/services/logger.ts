@@ -4,14 +4,14 @@ export class Logger {
   }
 }
 
-export class ConsoleLog extends Logger {
+export class ConsoleLogger extends Logger {
   log(message: string): void {
-    console.log('(logger)', message);
+    console.log(message);
   }
 }
 
-export class ConsoleWarn extends Logger {
+export class AuthorizedConsoleLogger extends Logger {
   log(message: string): void {
-    console.warn('(child logger)', message);
+    console.log('(!authorized)', message);
   }
 }
