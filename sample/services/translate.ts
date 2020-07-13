@@ -1,10 +1,14 @@
-const GERMAN = {
+interface Translations {
+  [key: string]: string;
+}
+
+const GERMAN: Translations = {
   DE: 'Deutsch',
   EN: 'Englisch',
   HELLO_WORLD: 'Hallo Welt!',
 };
 
-const ENGLISH = {
+const ENGLISH: Translations = {
   DE: 'German',
   EN: 'English',
   HELLO_WORLD: 'Hello World!',
@@ -19,11 +23,11 @@ export class TranslateService {
   private currentLanguage = LANGUAGES[0];
   private observers: (() => void)[] = [];
 
-  public get(key: string): string {
+  get(key: string): string {
     return this.currentLanguage.translations[key];
   }
 
-  public setLanguage(language: string): void {
+  setLanguage(language: string): void {
     const foundTranslations = LANGUAGES.find(({ id }) => id === language);
     if (foundTranslations) {
       this.currentLanguage = foundTranslations;
@@ -31,12 +35,12 @@ export class TranslateService {
     }
   }
 
-  public languages(): { id: string; caption: string }[] {
+  languages(): { id: string; caption: string }[] {
     const translations = this.currentLanguage.translations;
     return LANGUAGES.map(({ id }) => ({ id, caption: translations[id] }));
   }
 
-  public registerLanguageChange(fn: () => void): () => void {
+  registerLanguageChange(fn: () => void): () => void {
     const removeObserver = () => {
       this.observers = this.observers.filter((observer) => observer !== fn);
     };
@@ -48,8 +52,6 @@ export class TranslateService {
   }
 
   private notifyLanguageChange(): void {
-    this.observers.forEach((fn) => {
-      fn();
-    });
+    this.observers.forEach((fn) => fn());
   }
 }

@@ -22,15 +22,13 @@ export class LanguageSwitcherComponent extends HTMLElement {
     this.ul = this.shadow.querySelector('ul');
   }
 
-  public connectedCallback(): void {
-    this.unregister = this.translateService.registerLanguageChange(() => {
-      this.render();
-    });
+  connectedCallback(): void {
+    this.unregister = this.translateService.registerLanguageChange(() => this.render());
 
     this.render();
   }
 
-  public disconnectedCallback(): void {
+  disconnectedCallback(): void {
     this.unregister();
   }
 
@@ -42,9 +40,7 @@ export class LanguageSwitcherComponent extends HTMLElement {
     this.translateService.languages().forEach(({ id, caption }) => {
       const li = document.createElement('li');
       li.innerHTML = caption;
-      li.addEventListener('click', () => {
-        this.translateService.setLanguage(id);
-      });
+      li.addEventListener('click', () => this.translateService.setLanguage(id));
       this.ul.appendChild(li);
     });
   }

@@ -7,9 +7,7 @@ interface Provider<T> {
 
 export function ContainerProvider(providers: Provider<any>[]) {
   const container = new Container();
-  providers.forEach(({ provide, useClass }) => {
-    container.provide(provide, useClass);
-  });
+  providers.forEach(({ provide, useClass }) => container.provide(provide, useClass));
 
   return (target: any) => {
     const connectedCallback = target.prototype.connectedCallback;

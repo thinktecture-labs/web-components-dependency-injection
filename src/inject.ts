@@ -13,8 +13,8 @@ function makeRequestEvent(type: Token<any>): CustomEvent<DiRequest> {
   });
 }
 
-export function Inject(type?: Token<any>) {
-  return (target: any, name: string) => {
+export function Inject(type?: Token<any>): (target: any, name: string) => any {
+  return (target: any, name: string): any => {
     const paramType = type || Reflect.getMetadata('design:type', target, name);
 
     const property = {

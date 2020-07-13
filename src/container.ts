@@ -3,7 +3,6 @@
 import 'reflect-metadata';
 
 const KEY_IS_INJECTABLE = Symbol('IS_INJECTABLE');
-const KEY_PARAMS = 'design:paramtypes';
 
 export interface Token<T> extends Function {
   new (...args: any[]): T;
@@ -19,14 +18,17 @@ export class Container {
 
   provide<T>(token: Token<T>, clazz?: Token<T>) {
     const actualClass = clazz || token;
+
     if (actualClass.prototype.constructor.length && !this.isInjectable(actualClass)) {
       throw new Error(`${actualClass.name} is not decorated!`);
     }
+
     this.container.set(token, { clazz: actualClass });
   }
 
   get<T>(token: Token<T>): T {
     const item = this.container.get(token);
+
     if (!item) {
       throw new Error(`Nothing found for token ${token.name}`);
     }
@@ -50,10 +52,10 @@ export class Container {
 
   // Read type information from metadata
   private getInjectedParams(clazz: Function): any[] {
-    const argTypes = Reflect.getMetadata(KEY_PARAMS, clazz);
+    const argTypes = Reflect.getMetadata('design:paramtypes', clazz);
     if (argTypes === undefined) {
       return [];
     }
-    return argTypes.map((token) => this.get(token));
+    return argTypes.map((token: any) => this.get(token));
   }
 }

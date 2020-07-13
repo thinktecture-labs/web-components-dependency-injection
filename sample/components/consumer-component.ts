@@ -25,18 +25,16 @@ export class ConsumerComponent extends HTMLElement {
     this.span = this.shadow.querySelector('span');
   }
 
-  public connectedCallback(): void {
+  connectedCallback(): void {
     this.logger.log('[CONSUMER] Logging');
     this.httpLogger.log('[CONSUMER] Http Logging');
 
-    this.unregister = this.translateService.registerLanguageChange(() => {
-      this.render();
-    });
+    this.unregister = this.translateService.registerLanguageChange(() => this.render());
 
     this.render();
   }
 
-  public disconnectedCallback(): void {
+  disconnectedCallback(): void {
     this.unregister();
   }
 
