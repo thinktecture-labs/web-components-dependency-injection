@@ -38,6 +38,10 @@ template.innerHTML = `
     text-decoration: none;
     color: var(--primary-color);
   }
+
+  slot {
+    display:none;
+  }
 </style>
 
 <header>Pokemon List</header>
@@ -54,15 +58,8 @@ template.innerHTML = `
 
   </tbody>
 </table>
-`;
 
-const tableRowTemplate = document.createElement('template');
-tableRowTemplate.innerHTML = `
-<tr>
-  <td class="id"></td>
-  <td></td>
-  <td><a target="_blank"></a></td>
-</tr>
+<slot name="list-item"></slot>
 `;
 
 interface Pokemon {
@@ -83,6 +80,7 @@ export class PokeListComponent extends ShadowComponent(template) {
     headName: HTMLTableHeaderCellElement;
     body: HTMLTableSectionElement;
   };
+  private listItemTemplate?: HTMLTemplateElement;
 
   constructor() {
     super();
@@ -92,6 +90,16 @@ export class PokeListComponent extends ShadowComponent(template) {
       headId: this.shadow.querySelector('#id') as HTMLTableHeaderCellElement,
       headName: this.shadow.querySelector('#name') as HTMLTableHeaderCellElement,
     };
+
+    const slot = this.shadow.querySelector('slot') as HTMLSlotElement;
+    slot.addEventListener('slotchange', () => {
+      const [listItem] = slot.assignedNodes();
+
+      if (listItem) {
+        this.listItemTemplate = listItem as HTMLTemplateElement;
+        this.render();
+      }
+    });
   }
 
   connectedCallback(): void {
@@ -112,22 +120,18 @@ export class PokeListComponent extends ShadowComponent(template) {
 
     this.table.body.innerHTML = '';
 
-    if (!this.pokemons) {
+    if (!this.pokemons || !this.listItemTemplate) {
       return;
     }
 
     this.pokemons.forEach((pokemon) => {
-      const row = tableRowTemplate.content.cloneNode(true) as HTMLElement;
-
-      const [id, name] = row.querySelectorAll('td');
-      const link = row.querySelector('a')!;
-
-      id.innerText = pokemon.id;
-      name.innerText = pokemon.name;
-      link.href = pokemon.url;
-      link.innerText = this.translateService.get('POKE_LIST_DETAILS');
-
+      const rowFragment = this.listItemTemplate!.content.cloneNode(true) as HTMLElement;
+      const row = rowFragment.firstElementChild!;
       this.table.body.appendChild(row);
+
+      row.setAttribute('id', pokemon.id);
+      row.setAttribute('text', pokemon.name);
+      row.setAttribute('link', pokemon.url);
     });
   }
 

@@ -40,9 +40,17 @@
       </di-header>
 
       <div class="horizontal">
-        <di-poke-list></di-poke-list>
+        <di-poke-list>
+          <template slot="list-item">
+            <tr is="di-poke-list-item"></tr>
+          </template>
+        </di-poke-list>
         <di-authorized>
-          <di-poke-list></di-poke-list>
+          <di-poke-list>
+            <template slot="list-item">
+              <tr is="di-poke-list-item"></tr>
+            </template>
+          </di-poke-list>
         </di-authorized>
       </div>
     </di-root>

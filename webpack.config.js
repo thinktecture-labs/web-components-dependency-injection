@@ -11,6 +11,7 @@ module.exports = {
     // One entry point per web component
     'root-component': './sample/components/root-component.ts',
     'poke-list-component': './sample/components/poke-list-component.ts',
+    'poke-list-item-component': './sample/components/poke-list-item-component.ts',
     'authorized-component': './sample/components/authorized-component.ts',
     'language-switcher': './sample/components/language-switcher-component.ts',
     'header': './sample/components/header-component.ts',
